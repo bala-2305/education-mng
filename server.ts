@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -9,6 +10,9 @@ import staffRoutes from './server/routes/staff';
 import campusLifeRoutes from './server/routes/campusLife';
 import fs from 'fs';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+
+// Load environment variables
+dotenv.config();
 
 // Create uploads directory if it doesn't exist
 const uploadDir = path.join(process.cwd(), 'uploads');
