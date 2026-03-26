@@ -70,53 +70,53 @@ export default function Login() {
       </div>
 
       {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-slate-50">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 lg:p-16 bg-slate-50">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-md bg-white p-10 rounded-2xl shadow-xl border border-slate-100"
+          className="w-full max-w-md bg-white p-6 sm:p-8 lg:p-10 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl border border-slate-100"
         >
-          <div className="text-center mb-10">
+          <div className="text-center mb-8 sm:mb-10">
             {/* Responsive Catchy Title & Name */}
-            <div className="mb-8 lg:hidden">
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 tracking-tight mb-2 leading-tight">
+            <div className="mb-6 sm:mb-8 lg:hidden">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 tracking-tight mb-2 leading-tight">
                 Empower Your Education
               </h1>
               <div className="flex items-center justify-center gap-2 text-slate-800">
-                <GraduationCap className="w-6 h-6 text-indigo-600" />
-                <span className="text-xl font-bold tracking-wide uppercase">Student Manager</span>
+                <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600" />
+                <span className="text-lg sm:text-xl font-bold tracking-wide uppercase">Student Manager</span>
               </div>
             </div>
 
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 mb-4">
-              <Lock className="w-6 h-6" />
+            <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-50 text-indigo-600 mb-3 sm:mb-4">
+              <Lock className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">Welcome Back</h2>
-            <p className="text-slate-500 mt-2">Please enter your details to sign in</p>
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Welcome Back</h2>
+            <p className="text-sm sm:text-base text-slate-500 mt-1 sm:mt-2">Please enter your details to sign in</p>
           </div>
 
           {error && (
             <motion.div 
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
-              className="bg-red-50 border border-red-100 text-red-600 p-4 rounded-xl mb-6 text-sm flex items-center gap-2"
+              className="bg-red-50 border border-red-100 text-red-600 p-3 sm:p-4 rounded-lg sm:rounded-xl mb-4 sm:mb-6 text-xs sm:text-sm flex items-center gap-2"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+              <div className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
               {error}
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address or Roll No</label>
+              <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Email Address or Roll No</label>
               <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors w-5 h-5" />
+                <Mail className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors w-4 h-4 sm:w-5 sm:h-5" />
                 <input
                   type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-medium text-slate-900"
+                  className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-medium text-sm sm:text-base text-slate-900"
                   placeholder="name@cse.edu or 25CS001"
                   required
                 />
@@ -124,14 +124,14 @@ export default function Login() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+              <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5 sm:mb-2">Password</label>
               <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors w-5 h-5" />
+                <Lock className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-500 transition-colors w-4 h-4 sm:w-5 sm:h-5" />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-medium text-slate-900"
+                  className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 bg-slate-50 border border-slate-200 rounded-lg sm:rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-medium text-sm sm:text-base text-slate-900"
                   placeholder="•••••••• or YYYY-MM-DD"
                   required
                 />
@@ -141,26 +141,26 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 rounded-xl transition-all duration-200 shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 group"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl transition-all duration-200 shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 group text-sm sm:text-base"
             >
               {loading ? (
-                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <span className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
                   Sign In
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>
           </form>
           
-          <div className="mt-8 pt-8 border-t border-slate-100">
-            <div className="flex flex-col gap-3 text-sm text-slate-500 bg-slate-50 p-4 rounded-xl border border-slate-100">
-              <div className="flex items-center gap-2 font-medium text-slate-700 mb-1">
-                <Sparkles className="w-4 h-4 text-amber-500" />
+          <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-100">
+            <div className="flex flex-col gap-2 sm:gap-3 text-xs sm:text-sm text-slate-500 bg-slate-50 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-slate-100">
+              <div className="flex items-center gap-2 font-medium text-slate-700 mb-1 sm:mb-2">
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 flex-shrink-0" />
                 <span>Demo Credentials</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 font-mono text-[10px] leading-tight">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1.5 sm:gap-2 font-mono text-[9px] sm:text-[10px] leading-tight">
                 <div className="p-2 bg-white rounded border border-slate-200">
                   <span className="block text-slate-400 uppercase font-bold mb-1">HOD</span>
                   hod@cse.edu<br/>
@@ -184,7 +184,7 @@ export default function Login() {
               </div>
               <button 
                 onClick={handleSeed}
-                className="text-xs text-indigo-600 hover:text-indigo-700 font-medium hover:underline mt-2 text-center"
+                className="text-xs sm:text-sm text-indigo-600 hover:text-indigo-700 font-medium hover:underline mt-1 sm:mt-2 text-center"
               >
                 Initialize Demo Data (Click first if login fails)
               </button>

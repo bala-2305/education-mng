@@ -87,8 +87,21 @@ export default function PendingApprovals() {
               <div className="p-6">
                 <h4 className="text-sm font-medium text-slate-900 mb-4 uppercase tracking-wider">Requested Changes</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  {Object.entries(student.pendingUpdate.data).map(([key, value]: any) => {
-                    if (key === 'semesterMarks') {
+                  {(() => {
+                    const changes = Object.entries(student.pendingUpdate.data).filter(([key, value]: any) => {
+                      const currentValue = student[key];
+                      if (typeof value === 'object' && value !== null) {
+                        return JSON.stringify(value) !== JSON.stringify(currentValue);
+                      }
+                      return String(value || '') !== String(currentValue || '');
+                    });
+
+                    if (changes.length === 0) {
+                      return <div className="col-span-1 md:col-span-2 text-sm text-slate-500 italic p-4 bg-slate-50 rounded-xl border border-slate-100">No actual changes detected in this request relative to current data.</div>;
+                    }
+
+                    return changes.map(([key, value]: any) => {
+                      if (key === 'semesterMarks') {
                       return (
                         <div key={key} className="col-span-1 md:col-span-2 bg-slate-50 p-4 rounded-xl border border-slate-100">
                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Semester Marks Update</p>
@@ -135,7 +148,8 @@ export default function PendingApprovals() {
                         </div>
                       </div>
                     );
-                  })}
+                    });
+                  })()}
                 </div>
                 <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                   <button 
