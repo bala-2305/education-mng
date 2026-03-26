@@ -1,0 +1,5 @@
+{
+  "name": "Smart Academic Record System",
+  "description": "A full-stack academic record management system with role-based access, Excel upload, and automated report generation.",
+  "requestFramePermissions": []
+}
