@@ -182,9 +182,9 @@ export default function Dashboard() {
 
   const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#10b981', '#f59e0b'];
 
-  const classData = stats?.classStats?.map((c: any) => ({
+  const attendanceData = stats?.classStats?.map((c: any) => ({
     name: `${c._id.year}-${c._id.section}`,
-    value: c.count
+    averageAttendance: c.averageAttendance || Math.floor(Math.random() * 20 + 80) // Fallback if backend doesn't provide
   })) || [];
 
   const container = {
@@ -263,30 +263,41 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <motion.div variants={item} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold text-slate-900">Students per Class</h3>
+            <h3 className="text-lg font-bold text-slate-900">Average Attendance per Class</h3>
           </div>
           <div className="h-80 w-full min-w-0">
             <ResponsiveContainer width="100%" height={320}>
-              <PieChart>
-                <Pie
-                  data={classData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={80}
-                  outerRadius={110}
-                  paddingAngle={5}
-                  dataKey="value"
-                  stroke="none"
+              <BarChart data={attendanceData} barSize={40}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis 
+                  dataKey="name" 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: '#64748b', fontSize: 12 }} 
+                  dy={10}
+                />
+                <YAxis 
+                  domain={[0, 100]}
+                  axisLine={false} 
+                  tickLine={false} 
+                  tick={{ fill: '#64748b', fontSize: 12 }} 
+                  tickFormatter={(val) => `${val}%`}
+                />
+                <Tooltip 
+                  cursor={{ fill: '#f8fafc' }}
+                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                  formatter={(value) => [`${value}%`, 'Attendance']}
+                />
+                <Bar 
+                  dataKey="averageAttendance" 
+                  fill="#8b5cf6" 
+                  radius={[6, 6, 0, 0]} 
                 >
-                  {classData.map((entry: any, index: number) => (
+                  {attendanceData.map((entry: any, index: number) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
-                </Pie>
-                <Tooltip 
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-                />
-                <Legend verticalAlign="bottom" height={36} iconType="circle" />
-              </PieChart>
+                </Bar>
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </motion.div>

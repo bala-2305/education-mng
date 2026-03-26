@@ -788,7 +788,20 @@ router.get('/analytics', authenticate, authorize(['HOD', 'Staff']), async (req: 
     // Class wise stats
     const classStats = await Student.aggregate([
       { $match: matchStage },
-      { $group: { _id: { year: '$year', section: '$section' }, count: { $sum: 1 } } }
+      { 
+        $group: { 
+          _id: { year: '$year', section: '$section' }, 
+          count: { $sum: 1 },
+          averageAttendance: { $avg: '$attendance' }
+        } 
+      },
+      {
+        $project: {
+          _id: 1,
+          count: 1,
+          averageAttendance: { $round: ['$averageAttendance', 1] }
+        }
+      }
     ]);
 
     res.json({
