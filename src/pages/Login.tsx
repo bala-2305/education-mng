@@ -165,7 +165,7 @@ export default function Login() {
                   <span className="block text-slate-400 uppercase font-bold mb-1">HOD</span>
                   hod@cse.edu<br/>
                   <span className="text-slate-400">pwd: 123456</span>
-                </div>
+                </div>            
                 <div className="p-2 bg-white rounded border border-slate-200">
                   <span className="block text-slate-400 uppercase font-bold mb-1">Class Mam (2025-A)</span>
                   staff@cse.edu<br/>

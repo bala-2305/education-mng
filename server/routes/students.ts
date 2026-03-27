@@ -804,10 +804,17 @@ router.get('/analytics', authenticate, authorize(['HOD', 'Staff']), async (req: 
       }
     ]);
 
+    // Top students list with attendance
+    const studentsWithAttendance = await Student.find(matchStage)
+      .select('name rollNo department year section attendance')
+      .sort({ attendance: -1 })
+      .limit(20);
+
     res.json({
       totalStudents,
       departmentStats: deptStats,
-      classStats: classStats
+      classStats: classStats,
+      studentsList: studentsWithAttendance
     });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching analytics' });
